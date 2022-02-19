@@ -37,5 +37,10 @@ def send_message_to_vrchat():
     st.session_state.client.send_message(endpoint, parameter)
 
 st.session_state.endpoint = st.text_input("OSC Endpoint", "/hello")
-st.session_state.parameter = st.slider("Parameter to send", 0.0, 1.0, 0.1)
+param_type = st.radio("Parameter Type", ("int", "float"))
+match param_type:
+    case "float": 
+        st.session_state.parameter = st.slider("Parameter to send", 0.0, 1.0, 0.0)
+    case "int":
+        st.session_state.parameter = st.slider("Parameter to send", 0, 10, 0)
 st.button("send", on_click=send_message_to_vrchat)
