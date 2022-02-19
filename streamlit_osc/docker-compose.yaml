@@ -1,0 +1,13 @@
+version: '3'
+services:
+  osc-client:
+    build: ./client
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./client/app.py:/opt/app/app.py
+    ports:
+      - 8501:8501
+    environment:
+      HOST: host.docker.internal
+      PORT: 9000
